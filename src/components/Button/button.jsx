@@ -28,7 +28,7 @@ const Button = ({ children, onClick, size, color }) => {
     return (
       <button
         onClick={onClick}
-        className={` ${colorButton} custom-hover text-white font-bold m-8 rounded ${sizeButton}`}
+        className={` ${colorButton} shadow-md  hover:opacity-75  text-white font-bold m-8 rounded ${sizeButton}`}
       > 
         {children}
       </button>

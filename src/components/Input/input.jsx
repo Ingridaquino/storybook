@@ -1,23 +1,33 @@
-const Input = ({label, placeholder}) => {
+'use client';
+
+import React, { useState } from 'react';
+
+const Input = ({ label, placeholder, type, onChange }) => {
+    const [value, setValue] = useState('');
+
+    const handleChange = (event) => {
+        const newValue = event.target.value;
+        setValue(newValue);
+
+        if (onChange) {
+            onChange(newValue);
+        }
+    };
+
     return (
-        <div>
-            <label for="price" class="block text-sm font-medium leading-6 text-gray-900">{label}</label>
-            <div class="relative mt-2 rounded-md shadow-sm">
-                <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                    <span class="text-gray-500 sm:text-sm">$</span>
-                </div>
-                <input type="text" name="price" id="price" class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder={placeholder} />
-                    <div class="absolute inset-y-0 right-0 flex items-center">
-                        <label for="currency" class="sr-only">Currency</label>
-                        <select id="currency" name="currency" class="h-full rounded-md border-0 bg-transparent py-0 pl-2 pr-7 text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm">
-                            <option>USD</option>
-                            <option>CAD</option>
-                            <option>EUR</option>
-                        </select>
-                    </div>
+        <div className="w-72">
+            <div className="relative h-10 w-full min-w-[200px]">
+                <input 
+                    type={type}
+                    placeholder={placeholder}
+                    value={value}
+                    onChange={handleChange}
+                    className="peer h-full w-full rounded border border-text  bg-white px-3 py-2.5 font-sans text-sm font-normal text-text shadow-lg transition-all placeholder:text-gray-500 placeholder-shown:border placeholder-shown:border-text disabled:border-0 outline-none"
+                />
             </div>
         </div>
     );
 };
 
 export default Input;
+
